@@ -1,0 +1,191 @@
+<!DOCTYPE html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--Declare page as mobile friendly -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- Declare page as iDevice WebApp friendly -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- iDevice WebApp Splash Screen, Regular Icon, iPhone, iPad, iPod Retina Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <!-- iPhone 4 -->
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen_402x.png" 		media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <!-- iPhone 5 -->
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen_403x.png" />
+
+    <!-- Page Title -->
+    <title>活动</title>
+
+    <!-- Stylesheet Load -->
+    <link href="styles/style.css"	 rel="stylesheet" type="text/css">
+    <link href="styles/framework-style.css"  rel="stylesheet" type="text/css">
+    <link href="styles/framework.css" rel="stylesheet" type="text/css">
+
+
+    <!--Page Scripts Load -->
+    <script src="scripts/jquery-2.1.1.min.js"		type="text/javascript"></script>
+    <script src="scripts/framework.js"		type="text/javascript"></script>
+    <script src="scripts/jquery.lazyload.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            加载中...
+        </p>
+    </div>
+</div>
+
+<div id="header" class="header">
+    <div class="header-left">
+        前往下载小鹿社区
+    </div>
+    <div class="header-right">
+        <button id="btnDown">下载</button>
+    </div>
+</div>
+
+<div class="main ">
+    <div class="photo share-area">
+        <img src="images/activity/header.png" alt="img"/>
+    </div>
+</div>
+
+<div class="user-right">
+    <div class="user-img">
+        <img src="images/activity/user.jpg" alt="img" width="40">
+        <em>行走的蜗牛</em>
+    </div>
+
+</div>
+
+<div class="content">
+
+    <div class="container no-bottom">
+        <div class="heading half-bottom">
+            <div class="heading-left">
+                <!--<em>a few words about</em>-->
+                <strong><h3>订单的淡淡的淡淡的的淡淡
+                    是否水电费水电费撒旦法圣诞发水电费水电费撒旦法圣诞发送到的淡淡的水电费水电费撒旦法圣诞发送到多
+                    多撒旦法撒旦法撒发水电费水电费水电费撒旦法圣诞发送到</h3></strong>
+            </div>
+        </div>
+
+        <div class="column-responsive no-bottom">
+            <div class="one-half-responsive">
+                <div class="column no-bottom">
+                    <div class="one-half">
+                        <ul class="icon-lists">
+                            <li class="list-clock"><em>出发时间:</em>2017-01-05</li>
+                            <li class="list-globe"><em>地点:</em>东莞</li>
+                        </ul>
+                    </div>
+                    <div class="one-half">
+                        <ul class="icon-lists">
+                            <li class="list-cost"><em>人均费用:</em>￥80</li>
+                            <li class="list-flag"><em>玩法:</em>周末游/自驾游</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="decoration"></div>-->
+
+    <div class="container">
+        <div class="blog-post">
+
+            <!--------以下是用户编辑内容 begin------>
+
+
+            <div class="post-image">
+                <h3>第一站 寂静老字号</h3>
+                <img src="images/activity/001.jpg" alt="img">
+            </div>
+            <div class="post-content">
+                <p>
+                    喜欢写点什么就写什么 没所谓啦
+                </p>
+            </div>
+
+            <!--------end------>
+
+        </div>
+    </div>
+    <div class="decoration"></div>
+
+    <div class="container">
+        <div class="blog-post">
+            <h3>第二站</h3>
+            <img src="images/activity/1.jpg" alt="img">
+            <p>
+                梦想开始的地方
+            </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="footer">
+    <p class="copyright">--已到达世界尽头啦--</p>
+</div>
+<script>
+    $(function() {
+        $("img").lazyload({effect: "fadeIn"});
+
+    });
+
+    $("#header").hide();
+    //是否是微信平台
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    if(isWeiXin()){
+        $("#header").show();
+    }
+
+    $("#btnDown").on("click",function(){
+        window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.trisun.vicinity.activity";
+    })
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

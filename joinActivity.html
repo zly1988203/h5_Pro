@@ -1,0 +1,301 @@
+<!DOCTYPE html><head>
+    <meta charset="utf-8">
+
+    <!--Declare page as mobile friendly -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- Declare page as iDevice WebApp friendly -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <!-- iDevice WebApp Splash Screen, Regular Icon, iPhone, iPad, iPod Retina Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <!-- iPhone 4 -->
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen_402x.png" 		media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <!-- iPhone 5 -->
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen_403x.png" />
+
+    <!-- Page Title -->
+    <title>活动</title>
+
+    <!-- Stylesheet Load -->
+    <link href="styles/style.css"	 rel="stylesheet" type="text/css">
+    <link href="styles/framework-style.css"  rel="stylesheet" type="text/css">
+    <link href="styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="styles/progressbar.css" rel="stylesheet" type="text/css">
+
+    <!--Page Scripts Load -->
+    <script src="scripts/jquery-2.1.1.min.js"		type="text/javascript"></script>
+    <script src="scripts/framework.js"		type="text/javascript"></script>
+
+</head>
+<body style="padding-bottom: 50px;">
+
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            加载中...
+        </p>
+    </div>
+</div>
+
+<div id="header" class="header">
+    <div class="header-left">
+        前往下载小鹿社区
+    </div>
+    <div class="header-right">
+        <button id="btnDown">下载</button>
+    </div>
+</div>
+
+<div class="main ">
+    <div class="photo share-area">
+        <img src="images/activity/header.png" alt="img"/>
+    </div>
+</div>
+
+<div class="user-right">
+    <div class="user-img">
+        <img src="images/activity/user.jpg" alt="img" width="40">
+        <em>行走的蜗牛</em>
+    </div>
+
+</div>
+
+<div class="content">
+    <div class="container no-bottom">
+        <div class="heading half-bottom">
+            <div class="heading-left">
+                <!--<em>a few words about</em>-->
+                <strong><h3>东莞下坝村！喧闹中的寂静</h3></strong>
+            </div>
+
+        </div>
+        <div class="column-responsive no-bottom">
+            <div class="one-half-responsive">
+                <div class="column no-bottom">
+                    <div>
+                        <ul class="icon-lists">
+                            <li class="list-clock"><em>活动时间:</em>2017-01-5</li>
+                            <li class="list-address"><em>活动地点:</em>东莞是松山湖松山大道800号</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>
+    <div class="f_text">
+        <div class="progress">
+            <b class="progress__bar">
+                    <span class="progress__text">
+                      <em>0%</em>
+                    </span>
+            </b>
+        </div>
+        <span>总需<span style="color:#fd8639;">1000</span>人</span>
+        <span style="margin-left: 10%;">剩余<span id="residueTime" style="color:#a8d270;"></span></span>
+        <span style="float: right;">还需<span style="color:#fd8639;">522</span>人</span>
+    </div>
+
+    </p>
+
+
+</div>
+
+<div class="content">
+
+    <div class="container">
+
+        <div class="blog-post">
+
+            <!--------以下是用户编辑内容 begin------>
+
+            <div class="post-image">
+                <h3>第一站 寂静老字号</h3>
+                <img class="blog-post-image" src="images/activity/001.jpg" alt="img">
+            </div>
+            <div class="post-content">
+                <p>
+                    喜欢写点什么就写什么 没所谓啦
+                </p>
+            </div>
+
+            <!--------end------>
+
+        </div>
+    </div>
+    <div class="decoration"></div>
+
+    <div class="container">
+        <div class="blog-post">
+            <h3>第二站</h3>
+            <img class="blog-post-image" src="images/activity/1.jpg" alt="img">
+            <p>
+                梦想开始的地方
+            </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="footer">
+    <p class="copyright">--已到达世界尽头啦--</p>
+</div>
+
+<div class="footerPay">
+    <div class="footerleft"><b>￥90.00</b><em>/人</em></div>
+    <div class="footerRight">
+        <a href="submitOrder.html" id="btnJoin">报名</a>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var $progress = $('.progress'), $bar = $('.progress__bar'), $text = $('.progress__text'), percent = 88, update, resetColors, speed = 200, orange = 30, yellow = 55, green = 85, timer;
+    resetColors = function () {
+        $bar.removeClass('progress__bar--green').removeClass('progress__bar--yellow').removeClass('progress__bar--orange').removeClass('progress__bar--blue');
+        $progress.removeClass('progress--complete');
+    };
+    update = function (percent) {
+        $progress.addClass('progress--active');
+            percent = parseFloat(percent.toFixed(1));
+            $text.find('em').text(percent + '%');
+            if (percent >= 100) {
+                percent = 100;
+                $progress.addClass('progress--complete');
+                $bar.addClass('progress__bar--blue');
+                $text.find('em').text('100%');
+            } else {
+                if (percent >= green) {
+                    $bar.addClass('progress__bar--green');
+                } else if (percent >= yellow) {
+                    $bar.addClass('progress__bar--yellow');
+                } else if (percent >= orange) {
+                    $bar.addClass('progress__bar--orange');
+                }
+
+            }
+            $bar.css({ width: percent + '%' });
+    };
+
+
+    update(45);
+
+
+    $(function(){
+        function GetDateDiff() {
+            var endTime = new Date("2017-06-26 18:00:00");
+            var date1 = new Date();  //开始时间
+            var date3 = endTime.getTime() - date1.getTime();   //时间差的毫秒数
+            //计算相差的年数
+            var years = Math.floor(date3 / (12 * 30 * 24 * 3600 * 1000));
+            //计算相差的月数
+            var leave = date3 % (12 * 30 * 24 * 3600 * 1000);
+            var months = Math.floor(leave / (30 * 24 * 3600 * 1000));
+            //计算出相差天数
+            var leave0 = leave % (30 * 24 * 3600 * 1000);
+            var days = Math.floor(leave0 / (24 * 3600 * 1000));
+            //计算出小时数
+            var leave1 = leave0 % (24 * 3600 * 1000);     //计算天数后剩余的毫秒数
+            var hours = Math.floor(leave1 / (3600 * 1000));
+            //计算相差分钟数
+            var leave2 = leave1 % (3600 * 1000);         //计算小时数后剩余的毫秒数
+            var minutes = Math.floor(leave2 / (60 * 1000));
+            //计算相差秒数
+            var leave3 = leave2 % (60 * 1000);       //计算分钟数后剩余的毫秒数
+            var seconds = Math.round(leave3 / 1000);
+
+            var html = "- - -";
+            if(days < 0 || hours < 0 || minutes < 0 || seconds < 0 ){
+                html = "活动已结束";
+            }else{
+                html =  days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+            }
+
+            $("#residueTime").html(html);
+        }
+
+        setInterval(GetDateDiff,1000);
+
+        //设备类型
+        var js_iosType = getPhoneType();
+        function getPhoneType()
+        {
+            var result = false;
+            var u = navigator.userAgent;
+            if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+                result = false;
+            } else if (u.indexOf('iPhone') > -1) {//苹果手机
+                result = true;
+            } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
+                result = false;
+            } else if (u.indexOf('iPhone Simulator') > -1) {
+                result = true;
+            }
+            return result;
+
+        };
+
+
+        $("#btnJoin").on("click",function(){
+            var param = {
+                id:"25566",
+                title:"松山湖徒步",
+                time:"06月08号 08:30",
+                address:"松山湖",
+                imgPath:"",
+                price:"88.66"
+            }
+
+            if(js_iosType) {
+                goToWeekPlaceActivityOrder(param.id,param.title,param.time,param.address,param.imgPath,param.price);
+            }else{
+                window.weekplace.goToWeekPlaceActivityOrder(param.id,param.title,param.time,param.address,param.imgPath,param.price);
+            }
+        })
+    })
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
