@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>门店利率报表</title>
+    <script src="scripts/jquery-2.1.1.min.js"		type="text/javascript"></script>
+</head>
+<style>
+   table td {
+       border: 1px solid #ccc;
+       /*height: 32px;*/
+       padding: 8px;
+   }
+
+    .header-tr{
+        font-size: 16px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+   .tr-bg{
+       background: yellow;
+   }
+
+    .header-td{
+        text-align: center;
+        background: #cccccc;
+    }
+    .child-td{
+        /*text-align: center;*/
+        padding-left: 35px;
+        font-size: 15px;
+    }
+
+</style>
+<body>
+
+<table id="tb" class="tb-class">
+
+</table>
+
+<!--<table class="tb-class">-->
+    <!--<tr>-->
+        <!--<td rowspan="2">项目</td>-->
+        <!--<td colspan="2">合计</td>-->
+        <!--<td colspan="2">中州华府店</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td rowspan="1">当月金额</td>-->
+        <!--<td colspan="1">年累计金额</td>-->
+        <!--<td rowspan="1">当月金额</td>-->
+        <!--<td colspan="1">年累计金额</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+
+    <!--</tr>-->
+<!--</table>-->
+
+<script>
+    $(function () {
+        initTableHeader();
+        initLeft();
+        loadTableData();
+    })
+
+    var res = {
+        header:[
+            {
+                rowspan:2,
+                colspan:1,
+                title:"项目",
+                cols:[]
+            },
+            {
+                rowspan:1,
+                colspan:2,
+                title:"合计",
+                cols:[
+                    {   rowspan:1,
+                        colspan:1,
+                        title:"当月金额",
+                        data:[
+                            45,6,7,89,90,23,33,66,
+                        ]
+                    },
+                    {
+                        rowspan:1,
+                        colspan:1,
+                        title:"年累计金额",
+                    }
+                ]
+            },
+
+            {
+                rowspan:1,
+                colspan:2,
+                title:"中州华府店",
+                cols:[
+                    {   rowspan:1,
+                        colspan:1,
+                        title:"当月金额",
+                    },
+                    {
+                        rowspan:1,
+                        colspan:1,
+                        title:"年累计金额",
+                    }
+                ]
+            },
+            {
+                rowspan:1,
+                colspan:2,
+                title:"万科中心店",
+                cols:[
+                    {   rowspan:1,
+                        colspan:1,
+                        title:"当月金额",
+                    },
+                    {
+                        rowspan:1,
+                        colspan:1,
+                        title:"年累计金额",
+                    }
+                ]
+            },
+            {
+                rowspan:1,
+                colspan:2,
+                title:"科兴科学园店",
+                cols:[
+                    {   rowspan:1,
+                        colspan:1,
+                        title:"当月金额",
+                    },
+                    {
+                        rowspan:1,
+                        colspan:1,
+                        title:"年累计金额",
+                    }
+                ]
+            },
+        ],
+        left:[
+            {key:"operaIncome",name:"营业收入",level:"1",dataWay:""},
+            {key:"operaCosts",name:"营业成本",level:"1",dataWay:"minus",
+                child:[
+                    {key:"costs1",name:"门店费用"},
+                    {key:"costs2",name:"其他"},
+                    {key:"costs3",name:"铺面租金"},
+                    {key:"costs4",name:"手续费支出"}
+                ]
+            },
+            {key:"opera1",name:"营业收入",level:"1",dataWay:"addition"},
+            {key:"opera2",name:"杂费",level:"1",dataWay:""},
+            {key:"opera3",name:"杂费",level:"1",dataWay:"minus",
+                child:[
+                    {key:"opera4",name:"杂费"},
+                    {key:"opera5",name:"其他"},
+                    {key:"opera6",name:"补贴费用"},
+                    {key:"opera7",name:"手续费支出"}
+                ]
+            }
+        ],
+        data:[
+            {
+                colData:[
+                    {key:"operaIncome",value:[23,232]},
+                    {key:"operaCosts",value:[7,5]},
+                    {key:"opera1",value:[3,5]},
+                    {key:"opera2",value:[4,7]},
+                    {key:"opera3",value:[34,87]},
+                    {key:"opera4",value:[3.62,21.3]},
+                    {key:"opera5",value:[21.63,584.69]},
+                    {key:"opera6",value:[84.36,45.69]},
+                    {key:"opera7",value:[84.36,45.69]},
+
+                    {key:"costs1",value:[3,5]},
+                    {key:"costs2",value:[4,7]},
+                    {key:"costs3",value:[34,87]},
+                    {key:"costs4",value:[3.62,21.3]},
+                ],
+            }, {
+                colData:[
+                    {key:"operaIncome",value:[23,232]},
+                    {key:"operaCosts",value:[7,5]},
+                    {key:"opera1",value:[3,5]},
+                    {key:"opera2",value:[4,7]},
+                    {key:"opera3",value:[34,87]},
+                    {key:"opera4",value:[3.62,21.3]},
+                    {key:"opera5",value:[21.63,584.69]},
+                    {key:"opera6",value:[84.36,45.69]},
+                    {key:"opera7",value:[84.36,45.69]},
+
+                    {key:"costs1",value:[3,5]},
+                    {key:"costs2",value:[4,7]},
+                    {key:"costs3",value:[34,87]},
+                    {key:"costs4",value:[3.62,21.3]},
+                ],
+            }, {
+                colData:[
+                    {key:"operaIncome",value:[23,232]},
+                    {key:"operaCosts",value:[7,5]},
+                    {key:"opera1",value:[3,5]},
+                    {key:"opera2",value:[4,7]},
+                    {key:"opera3",value:[34,87]},
+                    {key:"opera4",value:[3.62,21.3]},
+                    {key:"opera5",value:[21.63,584.69]},
+                    {key:"opera6",value:[84.36,45.69]},
+                    {key:"opera7",value:[84.36,45.69]},
+
+                    {key:"costs1",value:[3,5]},
+                    {key:"costs2",value:[4,7]},
+                    {key:"costs3",value:[34,87]},
+                    {key:"costs4",value:[3.62,21.3]},
+                ],
+            }, {
+                colData:[
+                    {key:"operaIncome",value:[23,232]},
+                    {key:"operaCosts",value:[7,5]},
+                    {key:"opera1",value:[3,5]},
+                    {key:"opera2",value:[4,7]},
+                    {key:"opera3",value:[34,87]},
+                    {key:"opera4",value:[3.62,21.3]},
+                    {key:"opera5",value:[21.63,584.69]},
+                    {key:"opera6",value:[84.36,45.69]},
+                    {key:"opera7",value:[84.36,45.69]},
+
+                    {key:"costs1",value:[3,5]},
+                    {key:"costs2",value:[4,7]},
+                    {key:"costs3",value:[34,87]},
+                    {key:"costs4",value:[3.62,21.3]},
+                ],
+            },
+        ]
+    }
+    
+    function initTableHeader() {
+        var headerTr =$("<tr class='header-tr'></tr>")
+        headerTr.appendTo($("#tb"));
+        var tr1  = $("<tr class='header-tr'></tr>");
+        tr1.appendTo($("#tb"));
+        for(var i = 0 ;i<res.header.length;i++){
+            var item = res.header[i];
+
+            if(item.cols.length > 1){
+
+                var td = $('<td class="header-td" rowspan="'+item.rowspan+'" colspan="'+item.colspan+'">'+item.title+'</td>');
+
+                $.each(item.cols,function (index,td) {
+                    var td = $('<td class="header-td" rowspan="'+td.rowspan+'" colspan="'+td.colspan+'">'+td.title+'</td>');
+                    td.appendTo(tr1);
+                })
+
+            }else{
+                var td = $('<td rowspan="'+item.rowspan+'" colspan="'+item.colspan+'">'+item.title+'</td>');
+            }
+
+            td.appendTo(headerTr);
+        }
+    }
+
+    function initLeft() {
+        $.each(res.left,function (index,item) {
+            var tr = null;
+            if(item.dataWay == "addition"){
+                 tr =$("<tr id='"+item.key+"' class='header-tr'></tr>");
+                tr.appendTo($("#tb"));
+                var td = $('<td><img src="images/add_16.png">：'+item.name+'</td>');
+            }else if(item.dataWay == "minus"){
+                 tr =$("<tr id='"+item.key+"' class='header-tr'></tr>");
+                tr.appendTo($("#tb"));
+                var td = $('<td><img src="images/minus_16.png">：'+item.name+'</td>');
+            }else{
+                 tr =$("<tr id='"+item.key+"' class='header-tr tr-bg'></tr>");
+                tr.appendTo($("#tb"));
+                var td = $('<td>'+ item.name+'</td>');
+            }
+
+            td.appendTo(tr);
+
+            if(typeof(item.child) != "undefined" && item.child.length > 0){
+                $.each(item.child,function (i,child) {
+                    var tr =$("<tr id='"+child.key+"'></tr>");
+                    tr.appendTo($("#tb"));
+                    var childtd = $('<td class="child-td">'+(i+1)+child.name+'</td>');
+                    childtd.appendTo(tr);
+                })
+            }
+
+        })
+    }
+    
+    function loadTableData() {
+
+        $.each(res.data,function (index,item) {
+            $.each(item.colData,function (i,colVal) {
+                var tr = $("#"+colVal.key);
+                var td = $('<td>'+colVal.value[0]+'</td>');
+                td.appendTo(tr);
+                var td = $('<td>'+colVal.value[1]+'</td>');
+                td.appendTo(tr);
+            })
+
+        })
+
+//        $.each(res.data,function (index,item) {
+//            var tr =$("<tr class='header-tr'></tr>")
+//            tr.appendTo($("#tb"));
+//            var td = $('<td>'+item.itemTxt+'</td>');
+//            td.appendTo(tr);
+//            $.each(item.colData,function (index,data) {
+//                var td = $('<td>'+data+'</td>');
+//                td.appendTo(tr);
+//            })
+//
+//        })
+        
+    }
+</script>
+
+</body>
+</html>
