@@ -36,15 +36,15 @@
                 <div class="dvRd"><input type="radio" id="rd1" name="rdType" value="1"><label for="rd1">个人/非企业单位</label></div>
             </div>
             <div class="decoration"></div>
-            <div class="subli">发票抬头<span class="uc-red">*</span> <input type="text" id="title" placeholder="请输入发票抬头"></div>
+            <div class="subli">发票抬头<span class="uc-red">*</span> <input type="text" id="title" placeholder="请输入发票抬头" maxlength="50"></div>
             <div class="decoration"></div>
-            <div class="subli">纳税人识别号<span class="uc-red">*</span> <input type="text" id="userCode" placeholder="请输入纳税人识别号"></div>
+            <div class="subli">纳税人识别号<span class="uc-red">*</span> <input type="text" id="userCode" placeholder="请输入18位纳税人识别号" maxlength="18"></div>
             <div class="decoration"></div>
-            <div class="subli">发票内容 <input type="text" id="goodsInfo" placeholder="商品"></div>
+            <div class="subli">发票内容 <input type="text" id="goodsInfo" readonly placeholder="商品"></div>
             <div class="decoration"></div>
-            <div class="subli">发票金额 <span>355.6元</span></div>
+            <div class="subli">发票金额 <span id="spCost"></span></div>
             <div class="decoration"></div>
-            <div class="subli">备注信息 <input type="text" id="remark" placeholder="填写购买方 开户行及账号信息"></div>
+            <div class="subli">备注信息 <input type="text" id="remark" placeholder="填写购买方 开户行及账号信息" maxlength="60"></div>
         </div>
 
     </div>
@@ -53,11 +53,11 @@
         <div class="column no-bottom">
             <div class="subli">联系人手机号码<span class="uc-red">*</span> <input type="tel" id="userPhone" placeholder="请输入手机号码"></div>
             <div class="decoration"></div>
-            <div class="subli">电子邮件<span class="uc-red">*</span> <input type="email" id="userEmail" placeholder="用于向您发生电子发票"></div>
+            <div class="subli">电子邮箱<span class="uc-red">*</span> <input type="email" id="userEmail" placeholder="用于向您发生电子发票"></div>
             <div class="decoration"></div>
             <div class="subli">
-                <div id="mpanel3" >
-                </div>
+                <!--<div id="mpanel3" >-->
+                <!--</div>-->
             </div>
 
 
@@ -112,26 +112,28 @@
 
 <script>
     $(function () {
-
+        var orderId = "";
+        var costMoney = "352.50"
+        $("#spCost").html(costMoney+"元")
     })
 
-    $('#mpanel3').codeVerify({
-        type : 2,
-        figure : 100,	//位数，仅在type=2时生效
-        arith : 0,	//算法，支持加减乘，不填为随机，仅在type=2时生效
-        width : '60%',
-        height : '3rem',
-        fontSize : '2rem',
-        btnId : 'btnsub',
-        ready : function() {
-        },
-        success : function() {
-            saveInfo();
-        },
-        error : function() {
-            $("#msgTxt").html("验证码错误，请重新输入");
-        }
-    });
+//    $('#mpanel3').codeVerify({
+//        type : 2,
+//        figure : 100,	//位数，仅在type=2时生效
+//        arith : 0,	//算法，支持加减乘，不填为随机，仅在type=2时生效
+//        width : '60%',
+//        height : '3rem',
+//        fontSize : '2rem',
+//        btnId : 'btnsub',
+//        ready : function() {
+//        },
+//        success : function() {
+//            saveInfo();
+//        },
+//        error : function() {
+//            $("#msgTxt").html("验证码错误，请重新输入");
+//        }
+//    });
     
     function openDiv() {
         $(".alertMessageBg").css("display","block")
@@ -146,6 +148,47 @@
             bgHeight = document.body.clientHeight + 'px',
             alertBgNode = $(".dv-message");
         alertBgNode.css({'left':(bgWidth/2),'top':(bgHeight/2),"display":"block"});
+        if($("#title").val().trim() === ""){
+            $("#msgTxt").html("请输入发票抬头。");
+            return;
+        }
+
+        var userCode = $("#userCode").val().trim();
+        if(userCode === "" || userCode.length != 18){
+            $("#msgTxt").html("请输入18位纳税人识别号。");
+            return;
+        }
+
+        if(!/^[0-9a-zA-Z]*$/g.test(userCode)){
+            $("#msgTxt").html("纳税人识别号只能是数字和字母。");
+            return;
+        }
+
+        var userPhone = $("#userPhone").val().trim();
+        if(userPhone === ""){
+            $("#msgTxt").html("请输入手机号码。");
+            return;
+        }
+
+        if(!/^1[34578]\d{9}$/.test(userPhone)){
+            $("#msgTxt").html("手机号码格式不正确。");
+            return;
+        }
+
+        var reg_email = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+        var userEmail = $("#userEmail").val().trim();
+        if(userEmail === ""){
+            $("#msgTxt").html("请输入电子邮箱。");
+            return;
+        }
+
+        if(!reg_email.test(userEmail)){
+            $("#msgTxt").html("电子邮箱格式不正确。");
+            return;
+        }
+
+        $("#btnsub").hide();
+        saveInfo();
     }
 
     function saveInfo() {
@@ -160,6 +203,6 @@
     }
     
 </script>
-
++-
 </body>
 </html>
