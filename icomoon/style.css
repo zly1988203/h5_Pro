@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?o5wu5z');
+  src:  url('fonts/icomoon.eot?o5wu5z#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?o5wu5z') format('truetype'),
+    url('fonts/icomoon.woff?o5wu5z') format('woff'),
+    url('fonts/icomoon.svg?o5wu5z#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-password .path1:before {
+  content: "\e900";
+  color: rgb(230, 230, 230);
+}
+.icon-password .path2:before {
+  content: "\e901";
+  margin-left: -0.775390625em;
+  color: rgb(230, 230, 230);
+}
+.icon-password .path3:before {
+  content: "\e902";
+  margin-left: -0.775390625em;
+  color: rgb(1, 136, 251);
+}
+.icon-user .path1:before {
+  content: "\e903";
+  color: rgb(230, 230, 230);
+}
+.icon-user .path2:before {
+  content: "\e904";
+  margin-left: -0.7998046875em;
+  color: rgb(1, 136, 251);
+}
+.icon-spinner6:before {
+  content: "\e97f";
+}

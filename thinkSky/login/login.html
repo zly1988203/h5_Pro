@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
     <title>Title</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <script>
     window.onload = function() {
@@ -95,6 +96,10 @@
         /*overflow: hidden;*/
         position: relative;
     }
+    html {
+        height: 100%;
+    }
+
     /*去掉 内外边距*/
     *{
         padding: 0;
@@ -105,6 +110,8 @@
         background-color: #fff;
         /*让其水平居中*/
         text-align: center;
+        display: flex;
+        flex-direction: column;
     }
 
     *, *:after, *:before {
@@ -139,7 +146,8 @@
         padding-left: 0.1rem;
     }
     ::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color:    #999;opacity:1
+        color:    #999;
+        opacity:1;
         padding-left: 0.1rem;
     }
     :-ms-input-placeholder { /* Internet Explorer 10+ */
@@ -148,10 +156,11 @@
     }
 
     .container {
+        flex: 1 0 auto;
         margin-top: 1.76rem;
         /*padding-left: 1.64rem;*/
         /*padding-right: 1.64rem;*/
-        margin-bottom: 5rem;
+        margin-bottom: 4.5rem;
     }
     
     .header {
@@ -209,7 +218,9 @@
     }
 
     .footer{
-        margin-bottom: 0rem;
+        flex-shrink: 0;
+        /*margin-bottom: 0rem;*/
+        padding: 0.1rem;
     }
 
     .footer .zh-name{
@@ -232,10 +243,6 @@
         text-align: center;
         vertical-align: center;
         padding: 0.5rem 0 0rem 0rem;
-    }
-
-    .passwd{
-        background: url("password.png");
     }
 
     .decoration{
@@ -273,14 +280,18 @@
             <div class="form-content">
                 <div class="user-content">
                     <div class="dv-input">
-                        <img src="user.png"/>
+                        <span class="icon-user">
+                        <span class="path1"></span><span class="path2"></span>
+                        </span>
                         <input type="text" placeholder="请输入iTools账号"/>
                     </div>
 
                 </div>
                 <div class="pwd-content">
                     <div class="dv-input">
-                    <img src="password.png"/>
+                    <span class="icon-password">
+                    <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                    </span>
                     <input type="password" placeholder="请输入密码"/>
                     </div>
                 </div>
@@ -296,14 +307,18 @@
             <div class="form-content">
                 <div class="user-content">
                     <div class="dv-input">
-                    <img src="user.png"/>
+                    <span class="icon-user">
+                    <span class="path1"></span><span class="path2"></span>
+                    </span>
                     <input type="text" placeholder="请输入iTools账号"/>
                     </div>
 
                 </div>
                 <div class="pwd-content">
                     <div class="dv-input">
-                    <img src="password.png"/>
+                    <span class="icon-password">
+                    <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                    </span>
                     <input type="password" placeholder="请输入密码"/>
                     </div>
                 </div>
