@@ -45,7 +45,7 @@
 			display: inline-block;
             float:left;
             height:248px;
-            margin:10px 0 0 20px;
+            margin:25px 0 0 20px;
             padding-left: 15px;
         }
 
@@ -61,7 +61,7 @@
         }
 
         #captcha {
-            height: 64px;
+            height: 65px;
             width: 140px;
             cursor: hand;
             text-align: left;
@@ -114,28 +114,25 @@
         }
 
         #button-container {
-			/*display: flex;*/
-            width: 312px;
-            height: 30px;
-           /*// text-align: center;*/
-            margin-top: 10px;
-            /*float:right;*/
+            width: 262px;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 52px;
+            margin-top:10px;
+            float:left;
         }
 		
-		.btn-a {
-            float:left;
-            width: 250px;
-            /*height: 72px;*/
-            text-align: left;
-            display: flex;
-            margin-left: 52px;
-            margin-top: 10px;
-            float: left;
-		}
-		
-		.btn-a a {
+		#button-container a {
 			color:#666;
 		}
+
+        #btnQuery{
+            height: 25px;
+            border: 0px solid #ccc;
+            background-color: #fff;
+            font-size: 13px;
+            float: left;
+        }
 
 
         #submit {
@@ -636,12 +633,13 @@
 			<div id="dvCode" tabindex="-1">换一组验证码</div>
 		</div>
     </div>
-	<div class="btn-a">
-		<a id="btnQuery" href="#">去苹果官网查询</a>
-	</div>
 	
 <div id="button-container">
-    <button id="submit">查询</button>
+    <!--<button id="btnQuery">去苹果官网查询</button>-->
+    <a id="btnQuery" href="#">去苹果官网查询</a>
+    <!--<div>-->
+        <button id="submit">查询</button>
+    <!--</div>-->
 
 </div>
 	
