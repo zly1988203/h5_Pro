@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Mode of Travel</title>
+</head>
+<style>
+    #map {
+        height: 600px;
+        width: 100%;
+    }
+</style>
+<body>
+<div>
+    <strong>Mode of Travel: </strong>
+    <select id="mode" onchange="calcRoute();">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+    </select>
+    <div id="map"></div>
+</div>
+<script>
+    var directionsDisplay;
+    var directionsService;
+    var map;
+    var haight = {lat: 37.7699298, lng: -122.4469157} ;
+
+    function initMap() {
+        directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var mapOptions = {
+            zoom: 14,
+            center: haight
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        directionsDisplay.setMap(map);
+        new google.maps.Marker({
+            position: haight,
+            map: map
+        });
+    }
+
+    function calcRoute() {
+        var selectedMode = document.getElementById('mode').value;
+        var request = {
+            origin:haight, //new google.maps.LatLng(37.7699298, -122.4469157),
+            destination: new google.maps.LatLng(37.7683909618184, -122.51089453697205),
+            // Note that Javascript allows us to access the constant
+            // using square brackets and a string value as its
+            // "property."
+            travelMode: google.maps.TravelMode[selectedMode]
+        };
+        directionsService.route(request, function(response, status) {
+            if (status == 'OK') {
+                directionsDisplay.setDirections(response);
+            }
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key= AIzaSyDpum2KdasoPxfzI7hxI_P4B0lJtu2kBgg&callback=initMap"
+        type="text/javascript"></script>
+</body>
+</html>
