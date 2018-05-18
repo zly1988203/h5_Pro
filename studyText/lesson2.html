@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    window.onload = function () {
+        var count = 0;
+        var max = 10;
+        var bt = document.getElementById("bt");
+        function show(max){
+            if(count >= max) {
+                clearInterval(flag);
+                return;
+            }
+            document.getElementById("ant").innerHTML = count + 1;
+            count =count +1;
+        }
+        // var flag = setInterval(show, 1000,max);
+        // var flag = setInterval(show(), 1000,max);  //只执行一次方法
+        // var flag = setInterval("show()", 1000,max); //报错未定义show is not defined  show()方法要定义在 onload之外才行
+        // var flag = setInterval("var a=1;var b=2;c=a+b;alert(c);",1000);//正常 弹出3
+        bt.onclick = function () {
+            clearInterval(flag);
+        }
+        var str = 'Reyn';
+        function addStr(str) {
+            document.getElementById("dvContent").innerHTML = "hi," + str;
+        }
+
+        var timeout = setTimeout(addStr,2000,str);
+        clearTimeout(timeout);
+
+        setTimeout(
+
+            function(value1,value2){
+
+                console.log(value1+"+"+value2);
+
+                console.log(value1+value2)},
+
+            2000, 1,2
+
+        )
+    }
+</script>
+<div id="ant">0</div>
+<input type="button" id="bt" value="停止定时器"/>
+
+<div id="dvContent"></div>
+</body>
+</html>
