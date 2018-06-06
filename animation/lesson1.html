@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一课</title>
+</head>
+<style>
+    .content{
+        display: inline-flex;
+        width: 200px;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 5px 5px 5px #888888;
+        border: 1px solid #BFBFBF;
+    }
+    img {
+        width: 100%;
+        height: 300px;
+    }
+    .a-fadein{-webkit-animation-name:fadein;-moz-animation-name:fadein;-ms-animation-name:fadein;animation-name:fadein;}
+    @-webkit-keyframes fadein{
+        0%{opacity:0;}
+        100%{opacity:1;}
+    }
+</style>
+<body>
+    <div class="content a-fadein">
+        <img src="img/316965.jpg">
+    </div>
+
+    <div class="content a-fadein">
+        <img src="img/319373.jpg">
+    </div>
+</body>
+</html>

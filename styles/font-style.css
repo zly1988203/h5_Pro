@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?3r9i85');
+  src:  url('fonts/icomoon.eot?3r9i85#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?3r9i85') format('truetype'),
+    url('fonts/icomoon.woff?3r9i85') format('woff'),
+    url('fonts/icomoon.svg?3r9i85#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-people:before {
+  content: "\e919";
+}
+.icon-phone:before {
+  content: "\e91a";
+}
+.icon-time1:before {
+  content: "\e91b";
+}
+.icon-back:before {
+  content: "\e901";
+}
+.icon-Category:before {
+  content: "\e902";
+}
+.icon-close:before {
+  content: "\e903";
+}
+.icon-date:before {
+  content: "\e904";
+}
+.icon-date1:before {
+  content: "\e905";
+}
+.icon-delete:before {
+  content: "\e906";
+}
+.icon-good1:before {
+  content: "\e907";
+}
+.icon-good:before {
+  content: "\e908";
+}
+.icon-hot1:before {
+  content: "\e909";
+}
+.icon-hot:before {
+  content: "\e90a";
+}
+.icon-less:before {
+  content: "\e90b";
+}
+.icon-more:before {
+  content: "\e90c";
+}
+.icon-more_unfold:before {
+  content: "\e90d";
+}
+.icon-notice1:before {
+  content: "\e90e";
+}
+.icon-notice:before {
+  content: "\e90f";
+}
+.icon-person:before {
+  content: "\e910";
+}
+.icon-QRCode:before {
+  content: "\e911";
+}
+.icon-refresh:before {
+  content: "\e912";
+}
+.icon-search:before {
+  content: "\e913";
+}
+.icon-ticket:before {
+  content: "\e914";
+}
+.icon-time:before {
+  content: "\e915";
+}
+.icon-point:before {
+  content: "\e916";
+}
+.icon-service:before {
+  content: "\e917";
+}
+.icon-service1:before {
+  content: "\e918";
+}
+.icon-cost-rules:before {
+  content: "\e900";
+}
