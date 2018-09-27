@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>帮助中心</title>
+
+</head>
+<style>
+    .main{
+        width: 100%;
+    }
+
+    .menu_list {
+        width:20%;
+        margin: 0;
+        text-align: left;
+    }
+
+    .menu_list .menu_head {
+        height: 0.5rem;
+        line-height: 0.5rem;
+        font-size: 0.2rem;
+        color: #525252;
+        border: 1px solid #f1f1f1;
+        padding-left:0.1rem;
+        /*background: #51a9f18c;*/
+        color:#6B7B90;
+
+    }
+
+    .menu_content{
+        border: 1px solid #f1f1f1;
+        background: #F9FAFC;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+
+    }
+
+    .menu_content .menu_parent {
+        height: 0.38rem;
+        line-height: 0.38rem;
+        font-size: 0.15rem;
+        color: #525252;
+        margin: 0px;
+        /*background: #51a9f18c;*/
+        color: #6B7B90;
+    }
+
+    .img{
+        /*vertical-align:middle;*/
+        display:inline-block;
+        width:0.2rem;
+        height:0.2rem;
+        background: url("img/menu2.png") no-repeat;
+        cursor: pointer;
+    }
+
+    .menu_nva {
+        padding-left: 0.1rem;
+    }
+
+    /* 可以设置不同的进入和离开动画 */
+    /* 设置持续时间和动画函数 */
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active for below version 2.1.8 */ {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+
+    li {
+        font-size:0.15rem;
+        display: block;
+        height: 0.3rem;
+        line-height: 0.3rem;
+        color: #777777;
+        text-decoration: none;
+        /*border-bottom: 1px solid #51a9f18c;*/
+        cursor: pointer;
+    }
+
+    li:hover {
+        text-decoration: none;
+    }
+
+    .content{
+        width: 75%;
+    }
+
+</style>
+<body>
+<div class="main">
+    <div id="firstpaneDiv" class="menu_list">
+        <h3 class="menu_head" >问题汇总</h3>
+    </div>
+    <div class="content">
+
+    </div>
+</div>
+
+</body>
+<script src="js/zepto.js"></script>
+<script src="js/rem.js"></script>
+
+<script>
+    var questionList = [
+        {
+            id:'2222',
+            title:'上了飞机数量的开发建设的；联发科时间'
+        },
+        {
+            id:'3333',
+            title:'刚回家规划局规划；联发科时间'
+        },
+        {
+            id:'2222222',
+            title:'受到辐射范围儿；联发科时间'
+        },
+        {
+            id:'3344555',
+            title:'阿斯顿发生的发生的；联发科时间'
+        }
+    ]
+    var questionType = [
+        {
+            id:'01',
+            type:'系统类型',
+            children:[
+                {
+                    id:'011',
+                    title:'说的分手的'
+                },
+                {
+                    id:'012',
+                    title:'上的发生的'
+                }
+            ]
+        },
+        {
+            id:'02',
+            type:'功能问题',
+            children:[
+                {
+                    id:'021',
+                    title:'说的分手的'
+                },
+                {
+                    id:'022',
+                    title:'上的发生的'
+                }
+            ]
+        },
+        {
+            id:'03',
+            type:'页面问题',
+            children:[]
+        },
+        {
+            id:'04',
+            type:'其他问题',
+            children:[]
+        }
+    ]
+
+    var addClickEvent = function () {
+        $('.menu_parent i').on('click',function () {
+
+        })
+
+        $('.menu_nva li').on('click',function () {
+
+        })
+    }
+
+    $(function(){
+
+        var initMenu = function () {
+            $.each(questionType,function (index,item) {
+                var menuContent = $('<div class="menu_content"> ');
+                var header = $('<header  class="menu_parent" >');
+                var span = $('<span>'+item.type+'</span> <span class="img"></span>');
+                var transition = $('<transition name="slide-fade">');
+                var menItem = $('<div  class="menu_nva" >')
+                header.append(span);
+                menuContent.append(header).append(transition).append(menItem);
+                $.each(item.children,function (cindex,citem) {
+                    var li =  $('<li  data-id="'+citem.id+'">'+citem.title+'</li>')
+                    menItem.append(li);
+                })
+
+                $("#firstpaneDiv").append(menuContent)
+            })
+            
+            addClickEvent();
+        }
+
+        initMenu();
+
+    })
+</script>
+</html>

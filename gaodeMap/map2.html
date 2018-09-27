@@ -1,0 +1,279 @@
+<!-- 重点参数：changeNavgContent -->
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/chang-navg-content.html -->
+    <!--<base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>动态修改巡航器</title>
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+
+        #loadingTip {
+            position: absolute;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            padding: 3px 10px;
+            background: red;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="container"></div>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.4&key=65b7cb5e8c694cb822cd32791319b348&plugin=AMap.Driving"></script>
+<!-- UI组件库 1.0 -->
+<script src="https://webapi.amap.com/ui/1.0/main.js"></script>
+<script src="../scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+
+
+    AMapUI.load(['ui/misc/PathSimplifier', 'ui/overlay/SimpleMarker'], function(PathSimplifier, SimpleMarker) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+
+        initPage(PathSimplifier, SimpleMarker);
+
+    });
+
+    var passengerPosition = new AMap.LngLat(114.085938,22.546988);
+    var prePosition = new AMap.LngLat(114.084496,22.548325);
+    var nextPosition = new AMap.LngLat(114.084511,22.547817);
+
+    function initPage(PathSimplifier, SimpleMarker) {
+        //创建地图
+        var map = new AMap.Map('container', {
+            resizeEnable: true,
+            zoom: 16,
+            center: prePosition,
+        });
+        //获取司机坐标规划驾车行程
+        var driving = new AMap.Driving({
+            policy: AMap.DrivingPolicy.LEAST_TIME,
+            map: map,
+            hideMarkers: true
+        });
+
+        driving.search(prePosition,passengerPosition , function (status, result) {
+            if (status == 'complete') {
+                //设置起点为中心点
+                // map.setCenter(destination)
+            } else if (status == 'no_data') {
+                //返回0结果
+            } else if (status == 'error') {
+            }
+        });
+
+        var driverMark = new SimpleMarker({
+            //背景图标样式
+            // iconStyle: {
+            //     src: 'img/car.png',
+            // },
+            map: map,
+            position:passengerPosition
+        })
+
+        var endMark = new SimpleMarker({
+            //背景图标样式
+            iconStyle: {
+                src: '/res/images/hailing/mark.png',
+                style: {
+                    width: '0.46rem',
+                    height: '0.56rem'
+                }
+            },
+            // //图标前景文字
+            iconLabel: {
+                innerHTML: '<div class="mark-label" id="makeCountdowns">等待接驾</div>'
+            },
+            map: map,
+            position:prePosition
+        });
+
+        function planRoute() {
+            prePosition = nextPosition;
+            nextPosition =  new AMap.LngLat(114.085571,22.547804);
+            //乘客位置         //司机位置
+
+            // driving.search(passengerPosition,nextPosition , function (status, result) {
+            //     if (status == 'complete') {
+            //         //设置起点为中心点
+            //         // map.setCenter(destination)
+            //         $('#makeCountdowns').html('开始行程');
+            //
+            //     } else if (status == 'no_data') {
+            //         //返回0结果
+            //     } else if (status == 'error') {
+            //     }
+            // });
+
+            pathSimplifierIns.setData([{
+                name: '等待接驾',
+                path: [
+                    prePosition,
+                    nextPosition
+                ]
+            }]);
+
+            navg1 = pathSimplifierIns.createPathNavigator(0, {
+                loop: false,
+                speed: 100,
+                pathNavigatorStyle:{
+                    width: 16,
+                    height: 32,
+                    //使用图片
+                    content: PathSimplifier.Render.Canvas.getImageContent('img/car.png', onload, onerror),
+                    strokeStyle: null,
+                    fillStyle: null,
+                    pathLinePassedStyle: null,
+                }
+            });
+            navg1.start();
+        }
+
+        var pathSimplifierIns = new PathSimplifier({
+            zIndex: 999,
+            //autoSetFitView:false,
+            map: map, //所属的地图实例
+
+            getPath: function(pathData, pathIndex) {
+
+                return pathData.path;
+            },
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+
+                return null;
+            },
+            renderOptions: {
+                pathLineStyle: {
+                    strokeStyle: null,
+                    lineWidth: 0,
+                    borderStyle:null
+                },
+                startPointStyle: {
+                    radius: 1,
+                    fillStyle: null,
+                    lineWidth: 1,
+                    strokeStyle: null
+                },
+                endPointStyle: {
+                    radius: 1,
+                    fillStyle: null,
+                    lineWidth: 1,
+                    strokeStyle: null
+                },
+            }
+        });
+
+        window.pathSimplifierIns = pathSimplifierIns;
+
+
+        pathSimplifierIns.setData([{
+            name: '测试',
+            path: [
+                prePosition,
+                nextPosition,
+                // [114.084541,22.547804],
+                // [114.084686,22.547804],
+                // [114.085571,22.547804],
+                // [114.085571,22.547804],
+                // [114.085571,22.546988],
+                // [114.085571,22.546988],
+                // [114.085938,22.546988]
+            ]
+        }]);
+
+        //initRoutesContainer(d);
+
+        function onload() {
+            pathSimplifierIns.renderLater();
+        }
+
+        function onerror(e) {
+            alert('图片加载失败！');
+        }
+
+        var navg1 = pathSimplifierIns.createPathNavigator(0, {
+            loop: false,
+            speed: 100,
+            pathNavigatorStyle: {
+                width: 16,
+                height: 32,
+                pathLinePassedStyle: null,
+                //使用图片
+                content: PathSimplifier.Render.Canvas.getImageContent('img/car.png', onload, onerror),
+                strokeStyle: null,
+                fillStyle: null,
+
+
+            }
+        });
+
+        navg1.start();
+
+        var lngArr = [
+            [114.084541,22.547804],
+            [114.084686,22.547804],
+            [114.085571,22.547804],
+            [114.085571,22.547804],
+            [114.085571,22.546988],
+            [114.085571,22.546988],
+            [114.085938,22.546988]
+        ]
+
+
+        setTimeout(planRoute,3000);
+
+        // setTimeout(planRoute,3000);
+
+        // function changeNavgContent() {
+        //
+        //     //获取到pathNavigatorStyle的引用
+        //     var pathNavigatorStyle = navg1.getStyleOptions();
+        //
+        //     //覆盖修改
+        //     extend(pathNavigatorStyle, pathNavigatorStyles[0]);
+        //
+        //     //重新绘制
+        //     pathSimplifierIns.renderLater();
+        // }
+        //
+        // // setInterval(changeNavgContent, 500);
+    }
+
+    function initDes(){
+        var url = '//restapi.amap.com/v3/direction/driving?key=12ba70f263fabfb44ae2f95fea0f2bdf&origin=116.481028,39.989643&destination=116.434446,39.90816&originid=&destinationid=&extensions=base&strategy=0&waypoints=&avoidpolygons=&avoidroad=';
+        var url2 = 'https://restapi.amap.com/v3/direction/driving?key=65b7cb5e8c694cb822cd32791319b348&origins:114.084541,22.547804&destination=114.085938,22.546988&originid=&destinationid=&extensions=base&strategy=0&waypoints=&avoidpolygons=&avoidroad=';
+        $.ajax({
+            url:url,
+            dataType:'json',
+            success:function (res) {
+                var data = res
+                var results = data.results
+            }
+        })
+    }
+
+    initDes();
+
+
+</script>
+</body>
+
+</html>
