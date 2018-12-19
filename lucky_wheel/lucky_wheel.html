@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <link rel="stylesheet" href="../styles/vectors.css">
+    <title>转盘抽奖效果</title>
+    <!-- 这里是css部分 -->
+    <style>
+        .bg {
+            width: 100%;
+            height: 7rem;
+            margin: 0 auto;
+            background: url(img/turntable-bg.jpg) no-repeat;
+            background-size: 100%;
+            top:0;
+            left: 0;
+        }
+        img{
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        img[src^="img/pointer"] {
+            width: 1.7rem;
+            position: absolute;
+            z-index: 10;
+            top: 2.2rem;
+            left: 3.2rem;
+        }
+
+        img[src^="img/turntable"] {
+            width: 5.15rem;
+            position: absolute;
+            z-index: 5;
+            top: 0.7rem;
+            left: 1.35rem;
+            transition: all 4s;
+        }
+    </style>
+
+
+</head>
+<body>
+<!-- 这里是HTML结构部分 -->
+<div  class="bg">
+    <img src="img/pointer.png" alt="pointer">
+    <img src="img/turntable.png" alt="turntable">
+</div>
+
+<!-- 这里是js部分 -->
+<div>
+<img class="lazy" src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"
+     alt="img/316965.jpg"/>
+<img class="lazy" src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"
+     alt="img/320353.jpg"/>
+<img class="lazy" src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"
+     alt="img/319879.jpg"/>
+<img class="lazy" src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"
+     alt="img/319494.jpg"/>
+<img class="lazy" src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"
+     alt="img/319373.jpg"/>
+<img class="lazy" src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"
+     alt="img/360wallpaper_dt.jpg"/>
+</div>
+<script src="../scripts/zepto.min.js"></script>
+<script src="../scripts/vectors.js"></script>
+<script>
+    var oPointer = document.getElementsByTagName("img")[0];
+    var oTurntable = document.getElementsByTagName("img")[1];
+    var cat = 51.4; //总共7个扇形区域，每个区域约51.4度
+    var num = 0; //转圈结束后停留的度数
+    var offOn = true; //是否正在抽奖
+    oPointer.onclick = function () {
+        if (offOn) {
+            oTurntable.style.transform = "rotate(0deg)";
+            offOn = !offOn;
+            ratating();
+        }
+    }
+    //旋转
+    function ratating() {
+        var timer = null;
+        var rdm = 0; //随机度数
+        clearInterval(timer);
+        timer = setInterval(function () {
+            if (Math.floor(rdm / 360) < 3) { rdm = Math.floor(Math.random() * 3600); }
+            else {
+                oTurntable.style.transform = "rotate(" + rdm + "deg)";
+                clearInterval(timer);
+                setTimeout(function () {
+                    offOn = !offOn;
+                    num = rdm % 360;
+                    if (num <= cat * 1) { alert("4999元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元"); }
+                    else if (num <= cat * 2) { alert("50元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "50元"); }
+                    else if (num <= cat * 3) { alert("10元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "10元"); }
+                    else if (num <= cat * 4) { alert("5元"); console.log("rdm=" + rdm + "，num=" + num + "，" + "5元"); }
+                    else if (num <= cat * 5) { alert("免息服务"); console.log("rdm=" + rdm + "，num=" + num + "，" + "免息服务"); }
+                    else if (num <= cat * 6) { alert("提交白金"); console.log("rdm=" + rdm + "，num=" + num + "，" + "提交白金"); }
+                    else if (num <= cat * 7) { alert("未中奖"); console.log("rdm=" + rdm + "，num=" + num + "，" + "未中奖"); }
+                }, 4000);
+            }
+        }, 30);
+    }
+
+    var temp = -1;//用来判断是否是向下滚动（向上滚动就不需要判断延迟加载图片了）
+    window.onscroll = function() {
+        var imgElements = document.getElementsByTagName("img");
+        var lazyImgArr = new Array();
+        var j = 0;
+        for(var i=0; i<imgElements.length; i++) {
+            if(imgElements[i].className == "lazy"){
+                lazyImgArr[j++] = imgElements[i];
+            }
+        }
+        var scrollHeight = document.documentElement.scrollTop;//滚动的高度
+        var bodyHeight = $(window).height();//body（页面）可见区域的总高度
+        if(temp < scrollHeight) {//为true表示是向下滚动，否则是向上滚动，不需要执行动作。
+            for(var k=0; k<lazyImgArr.length; k++) {
+                var imgTop = lazyImgArr[k].offsetTop;//1305（图片纵坐标）
+                if((imgTop - scrollHeight) <= bodyHeight) {
+                    lazyImgArr[k].src = lazyImgArr[k].alt;
+                    lazyImgArr[k].className = "notlazy"
+                }
+            }
+            temp = scrollHeight;
+        }
+    }
+
+    $(function () {
+
+    })
+
+
+</script>
+</body>
+</html>
