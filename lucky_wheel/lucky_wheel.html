@@ -47,8 +47,8 @@
 <body>
 <!-- 这里是HTML结构部分 -->
 <div  class="bg">
-    <img src="img/pointer.png" alt="pointer">
-    <img src="img/turntable.png" alt="turntable">
+    <img id="turntable" src="img/turntable.png" alt="turntable">
+    <img id="pointer" src="img/pointer.png" alt="pointer">
 </div>
 
 <!-- 这里是js部分 -->
@@ -69,18 +69,9 @@
 <script src="../scripts/zepto.min.js"></script>
 <script src="../scripts/vectors.js"></script>
 <script>
-    var oPointer = document.getElementsByTagName("img")[0];
-    var oTurntable = document.getElementsByTagName("img")[1];
     var cat = 51.4; //总共7个扇形区域，每个区域约51.4度
     var num = 0; //转圈结束后停留的度数
     var offOn = true; //是否正在抽奖
-    oPointer.onclick = function () {
-        if (offOn) {
-            oTurntable.style.transform = "rotate(0deg)";
-            offOn = !offOn;
-            ratating();
-        }
-    }
     //旋转
     function ratating() {
         var timer = null;
@@ -89,7 +80,7 @@
         timer = setInterval(function () {
             if (Math.floor(rdm / 360) < 3) { rdm = Math.floor(Math.random() * 3600); }
             else {
-                oTurntable.style.transform = "rotate(" + rdm + "deg)";
+                $('#turntable').css('transform',"rotate(" + rdm + "deg)");
                 clearInterval(timer);
                 setTimeout(function () {
                     offOn = !offOn;
@@ -105,6 +96,14 @@
             }
         }, 30);
     }
+
+    $('#pointer').on('click',function () {
+        if (offOn) {
+            $('#turntable').css('transform',"rotate(0deg)");
+            offOn = !offOn;
+            ratating();
+        }
+    })
 
     var temp = -1;//用来判断是否是向下滚动（向上滚动就不需要判断延迟加载图片了）
     window.onscroll = function() {
