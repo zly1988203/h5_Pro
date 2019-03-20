@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo page</title>
+</head>
+<body>
+<div id="output"></div>
+<script src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.qrcode.min.js"></script>
+<script>
+
+jQuery(function(){
+	var strCode=window.location.search;
+	if(strCode!=null&&strCode!=""){
+		jQuery('#output').qrcode("www.baidu.com");
+	}
+})
+</script>
+</body>
+</html>

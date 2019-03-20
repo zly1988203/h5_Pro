@@ -7,7 +7,7 @@
     <title>覆盖物的添加与移除</title>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
     <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
-    <script src="https://webapi.amap.com/maps?v=1.4.12&key=您申请的key值"></script>
+    <script src="https://webapi.amap.com/maps?v=1.4.6&key=78bf302bc9f64a17bf19b72754d6874e&plugin=AMap.Driving"></script>
     <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
     <style>
         html,
@@ -40,7 +40,11 @@
     <div class="input-item">
         <label>Circle：</label>
         <button class="btn" id="add-circle" style="margin-right:1rem;">添加Circle</button>
-        <button class="btn" id="remove-circle">删除Circle</button>
+
+    </div>
+    <div class="input-item">
+        <label>Line：</label>
+        <button class="btn" id="add-line" style="margin-right:1rem;">添加Line</button>
     </div>
 </div>
 
@@ -50,14 +54,40 @@
         zoom:11,
         center: [116.397428, 39.90923]
     });
-    // 构造点标记
-    var marker = new AMap.Marker({
-        icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
-        position: [116.415467, 39.907761]
-    });
+
+    var markers = [
+        {
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [116.405467, 39.907761]
+        },
+        {
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [116.415467, 39.907761]
+        },
+        {
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [116.415467, 39.917761]
+        },
+        {
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [116.415467, 39.937761]
+        }
+    ]
+
+    var lineMarkers = [
+        {
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [116.425467, 39.927761]
+        },
+        {
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [116.435467, 39.937761]
+        },
+    ]
+
     // 构造矢量圆形
     var circle = new AMap.Circle({
-        center: new AMap.LngLat("116.403322", "39.920255"), // 圆心位置
+        // center: new AMap.LngLat("116.415467", "39.937761"), // 圆心位置
         radius: 1000,  //半径
         strokeColor: "#F33",  //线颜色
         strokeOpacity: 1,  //线透明度
@@ -66,24 +96,60 @@
         fillOpacity: 0.35 //填充透明度
     });
 
+    //构造路线导航类
+    var driving = new AMap.Driving({
+        map: map,
+        // panel: "panel"
+    });
+
+    //构造路线导航类
+    var driving1 = new AMap.Driving({
+        map: map,
+        // panel: "panel"
+    });
 
     //事件绑定
     document.querySelector("#add-marker").onclick = function() {
-        map.add(marker);
+
+        for(var i=0;i<markers.length;i++)
+        {
+            // 构造点标记
+            var marker = new AMap.Marker(markers[i]);
+            if (!marker._circle) {
+                //创建一个新的circle，附加在Marker上
+                marker._circle = new AMap.Circle(circle);
+
+            } else {
+                //circle已经存在（切换数据时，marker会被回收利用），更新
+                marker._circle.setOptions(circle);
+            }
+
+            map.add(marker);
+            //更新map
+            marker._circle.setMap(marker.getMap());
+
+            //更新position
+            marker._circle.setCenter(marker.getPosition());
+        }
+
         map.setFitView();
     }
     document.querySelector("#remove-marker").onclick = function() {
         map.remove(marker);
-        map.setFitView();
+        // map.setFitView();
     }
     document.querySelector("#add-circle").onclick = function() {
         map.add(circle);
-        map.setFitView();
+        // map.setFitView();
     }
-    document.querySelector("#remove-circle").onclick = function() {
-        map.remove(circle);
-        map.setFitView();
+    document.querySelector("#add-line").onclick = function () {
+        // 根据起终点经纬度规划驾车导航路线
+        driving.search(new AMap.LngLat(116.425467, 39.865042), new AMap.LngLat(116.427281, 39.913719),function (status, result) {
+            
+        });
+        driving1.search(new AMap.LngLat(116.415467, 39.865042), new AMap.LngLat(116.437281, 39.913719));
     }
+
 
 </script>
 </body>
