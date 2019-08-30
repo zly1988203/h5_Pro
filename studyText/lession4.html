@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+    }
+    .div1{
+        background: #00fe21;
+    }
+
+    .div2{
+        background: #2C8DFB;
+        transform: translate(100px,100px);
+        -webkit-transform: translate(100px,100px);/*chrome safari*/
+        -moz-transform: translate(100px,100px);/*firefox*/
+        -o-transform: translate(100px,100px);/*opera*/
+        -ms-transform: translate(100px,100px);/*IE*/
+    }
+
+    .div3{
+        background: #fe5e48;
+        transition:width 2s,height 2s,transform 2s;
+    }
+    .div3:hover{
+        width: 200px;
+        height: 200px;
+        background: #2fa0ec;
+        transform: rotate(360deg);
+    }
+
+    .div4{
+        background: #00fe21;
+        position: relative;
+        animation:anima 5s infinite;/*名称 时间 播放次数*/
+        -webkit-animation:anima 5s infinite;
+    }
+
+    @keyframes  anima{
+        0%{background: #00fe21;color:#ffffff;left:0px;top:0px;}
+        25%{background: #9600d2;color:#eeffcc;left:200px;top:0px;}
+        50%{background: #a8ff26;color:#99ddff;left:200px;top:200px;}
+        75%{background:crimson;color:#ce89ce;left:0px;top:200px;}
+        100%{background: #f0c600;color:#25a2ec;left:0px;top:0px;}
+    }
+
+</style>
+<body>
+<div class="div1">
+    这是固定的div1
+</div>
+
+<div class="div2">
+    这是移动的div2
+</div>
+
+<div class="div3">
+    这是变动的div3
+</div>
+
+<div class="div4">
+    这是动画变化的div4
+</div>
+
+</body>
+</html>

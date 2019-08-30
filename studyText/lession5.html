@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex 布局</title>
+</head>
+<style>
+    .main{
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        width: 800px;
+    }
+    .item{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #2C8DFB;
+        margin: 10px;
+        background: #a8ff26;
+        border-radius: 10%;
+        text-align: center;
+        box-shadow: 10px 10px 10px grey;
+        /*box-shadow: 10px 10px 5px #888888;*/
+        text-shadow: 5px 5px 5px #FF0000;
+    }
+
+    div.card {
+        width: 250px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        position:fixed;
+        bottom:0;
+        left:0;
+    }
+
+    .img-panle{
+        /*width: 100%;*/
+        /*margin: 0 auto;*/
+    }
+
+    .img-panle img{
+        width: 100%;
+        margin: 0 auto;
+    }
+
+</style>
+<body>
+<div class="img-panle">
+    <img src="../images/319494.jpg" alt=""/>
+</div>
+<div class="main">
+    <div class="item">
+        子元素
+    </div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+    <div class="item">子元素</div>
+</div>
+
+
+<div class="card">
+    卡片
+</div>
+
+</body>
+</html>
