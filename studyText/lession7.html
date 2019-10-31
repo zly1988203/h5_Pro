@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg</title>
+    <link href="css/lession.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<svg width="200" height="200" viewBox="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="60" r="50" fill="#fff666"/>
+</svg>
+
+<svg width="120" height="120" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+
+    <rect x="10" y="10" width="100" height="100">
+        <animate attributeType="XML" attributeName="x" from="-100" to="120"
+                 dur="10s" repeatCount="indefinite"/>
+    </rect>
+</svg>
+
+<svg width="200" height="200" viewBox="0 0 100 100"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <image xlink:href="../images/319494.jpg" x="0" y="0" height="100" width="100" />
+</svg>
+
+<svg width="150" height="100" viewBox="0 0 3 2" style="border: 1px solid chartreuse">
+    <rect width="1" height="2" x="0" fill="#008d46" />
+    <rect width="1" height="2" x="1" fill="#ffffff" />
+    <rect width="1" height="2" x="2" fill="#d2232c" />
+</svg>
+
+<svg width="120" height="120"  viewBox="0 0 120 120"
+     xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink" >
+
+    <polygon points="60,30 90,90 30,90">
+        <animateTransform attributeName="transform"
+                          attributeType="XML"
+                          type="rotate"
+                          from="0 60 70"
+                          to="360 60 70"
+                          dur="10s"
+                          repeatCount="indefinite"/>
+    </polygon>
+</svg>
+
+<svg width="200" height="100" viewBox="0 0 120 120">
+    <line x1="10" y1="100" x2="100" y2="30" stroke="#008d46" stroke-width="2"></line>
+</svg>
+
+<!--<svg  width="120" height="120" viewPort="0 0 120 120">-->
+
+    <!--<line x1="20" y1="100" x2="100" y2="20" stroke="black" stroke-width="2"/>-->
+
+<!--</svg>-->
+
+
+<svg height="0">
+    <mask id="mask-1">
+        <linearGradient id="gradient-1" y2="1">
+            <stop stop-color="white" offset="0"/>
+            <stop stop-opacity="0" offset="1"/>
+        </linearGradient>
+        <circle cx="0.25" cy="0.25" r="0.25" id="circle" fill="white"/>
+        <rect x="0.5" y="0.2" width="300" height="100" fill="url(#gradient-1)"/>
+    </mask>
+</svg>
+
+<!--<div class="target">-->
+    <!--<p>-->
+        <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt-->
+        <!--ut labore et dolore magna aliqua. Ut enim ad minim veniam.-->
+    <!--</p>-->
+<!--</div>-->
+
+
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="60" r="50">
+        <animateColor attributeName="fill" attributeType="XML"
+                      from="black" to="red" dur="6s" repeatCount="indefinite"/>
+    </circle>
+</svg>
+
+<svg width="120" height="120"  viewBox="0 0 120 120"
+     xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink" >
+
+    <defs>
+        <linearGradient id="MyGradient">
+            <stop offset="5%"  stop-color="green"/>
+            <stop offset="95%" stop-color="gold"/>
+        </linearGradient>
+    </defs>
+
+    <rect fill="url(#MyGradient)"
+          x="10" y="10" width="100" height="100"/>
+</svg>
+
+<svg width="200" height="200" viewBox="0 0 100 100"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <image xlink:href="../images/map/map1.png" x="0" y="0" height="100" width="100" />
+</svg>
+
+</body>
+<script>
+
+</script>
+</html>

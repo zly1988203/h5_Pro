@@ -6,3 +6,12 @@
 body{
     background-color: #FFFFFF;
 }
+
+.target {
+    mask: url(#mask-1);
+}
+p {
+    width: 300px;
+    border: 1px solid #000;
+    display: inline-block;
+}

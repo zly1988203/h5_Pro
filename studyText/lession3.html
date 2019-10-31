@@ -13,9 +13,19 @@
 <body>
 <script>
     let str=`welcom to SZ
-     come here for here do here
-    `
-    
+     come here for here do here`;
+
+    var num1 = [1, 2, 3],
+        num2 = [4, 5, 6],
+        num3 = [7, 8, 9];
+
+    var nums = num1.concat(num2, num3);
+    console.log('数组连接---------------'+nums)
+
+    nums.push(10);
+    nums.pop();
+    nums.shift();
+    nums.unshift(11);//添加元素到数组的头部
 </script>
 </body>
 </html>
