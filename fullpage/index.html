@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全屏展示</title>
+    <link rel="stylesheet" href="js/jquery.fullPage.css">
+    <script src="../scripts/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.fullPage.js"></script>
+
+</head>
+<style>
+    .bg1{
+        display: block;
+        background: url(./images/1.jpg) no-repeat 100% 100%;
+    }
+    .bg2{
+        display: block;
+        background: url(./images/2.jpg) no-repeat 100% 100%;
+    }
+    .bg3{
+        display: block;
+        background: url(./images/3.jpg) no-repeat 100% 100%;
+    }
+    .bg4{
+        display: block;
+        background: url(./images/4.jpg) no-repeat 100% 100%;
+    }
+</style>
+<body>
+<div id="fullpage">
+    <div class="section bg1">
+    </div>
+    <div class="section bg2">
+    </div>
+    <div class="section bg3">
+    </div>
+    <div class="section bg4">
+    </div>
+</div>
+</body>
+<script>
+    $('#fullpage').fullpage({
+        navigation: true,//是否显示导航，默认为false
+        navigationPosition: 'right',//导航小圆点的位置
+        css3: true,//是否使用CSS3 transforms来实现滚动效果，默认为true
+        loopBottom: true,//滚动到最低部后是否连续滚动到顶部，默认为false
+        loopTop: true,//滚动到最顶部后是否连续滚动到底部，默认为false
+    });
+</script>
+</html>

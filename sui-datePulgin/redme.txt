@@ -1,0 +1,4 @@
+ initCityTimePicker($('#present_startTime'),showSharingCarPrice);
+
+
+<input type="text" id="present_startTime" class="startTime" placeholder="出发时间" readonly="" value="" data-date="" data-time="" data-interval="5" data-intervalminute="20" data-filter="05:00~07:00,07:30~09:30,10:00~11:30,12:00~13:30,14:00~22:30">

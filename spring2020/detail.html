@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第三届运营先锋大赛</title>
+</head>
+<style>
+    .main{
+        margin: auto;
+    }
+    .img01{
+        width: 100%;
+        height: 6.55rem;
+        background: url("img/201.jpg") no-repeat;
+        background-size: 100%;
+    }
+    .img02{
+        width: 100%;
+        height: 9.55rem;
+        background: url("img/202.jpg") no-repeat;
+        background-size: 100%;
+    }
+    .img03{
+        width: 100%;
+        height: 11rem;
+        background: url("img/203.jpg") no-repeat;
+        background-size: 100%;
+    }
+
+    .chart-content{
+        position: absolute;
+        width: 96%;
+        height: 5.5rem;
+        background: white;
+        border-radius: 0.2rem;
+        margin: 0.1rem;
+    }
+
+    .chart-txt{
+        position: absolute;
+        color: #417efd;
+        font-size: 0.16rem;
+        text-align: left;
+        margin: 0.1rem 0.15rem;
+        line-height: 0.25rem;
+    }
+    .chart-txt span{
+        font-weight: bold;
+    }
+    .chart-txt .tips{
+        font-size: 0.13rem;
+    }
+    #container{
+        width: 100%;
+        margin: auto;
+    }
+
+    #myChart{
+        width: 90%;
+        height: 100%;
+        /*padding: 0.1rem;*/
+    }
+    .canvTitle{
+        font-size: 0.3rem;
+        color: #417efd;
+        text-align: center;
+    }
+</style>
+<body>
+<div class="main">
+    <div class="chart-content">
+        <div id="container">
+            <div class="canvTitle">五大区域运营实力排行榜</div>
+            <!--<canvas id="canvas"></canvas>-->
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="chart-txt">
+            <div><span>运营实力：</span>是指各区域在活动期间的订单增长数，拥有衡量全国各区域在活动期间的相对表现。</div>
+            <div><span>评选依据：</span>活动结束后，将对春运期间的订单总数进行排名，经中交出行监督审查，</div>
+            <div style="text-indent: 0.8rem;">从表现突出的区域中评选出各奖项获胜团队并颁发奖励。</div>
+            <div class="tips">注：五大区域运营实力排行榜，将于活动启动时，通过公众号‘中交出行研究院’公布，请保持关注。</div>
+        </div>
+    </div>
+
+    <div class="img01">
+    </div>
+    <div class="img02">
+    </div>
+    <div class="img03">
+    </div>
+</div>
+<script src="scripts/jquery-2.1.1.min.js"></script>
+<script src="scripts/rem.js"></script>
+<script src="scripts/Chart.min.js"></script>
+<script src="../scripts/f2.min.js"></script>
+<script>
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(65, 126, 253)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
+    function getDateTime () {
+        var myDate = new Date;
+        var year = myDate.getFullYear(); //获取当前年
+        var mon = myDate.getMonth() + 1; //获取当前月
+        var date = myDate.getDate(); //获取当前日
+        return year+'/'+mon+'/'+date;
+    }
+
+    function getContent(){
+        $.ajax({
+            //请求方式为get
+            type:"GET",
+            //json文件位置
+            url:"scripts/data.json",
+            //返回数据格式为json
+            dataType: "json",
+            //请求成功完成后要执行的方法
+            success: function(res){
+                var data_val ;
+                var nowDateTime = getDateTime();
+                $.each(res.data,function (index,item) {
+                    if(item.dateTime === nowDateTime){
+                        data_val = item.list;
+                    }
+                })
+
+                initF2Chart(data_val);
+                // initChart(data_val);
+            },
+            error: function (e) {
+                var _e = e;
+            }
+        });
+    }
+
+    function initChart(data_val) {
+        var color = Chart.helpers.color;
+        var barChartData = {
+            labels: [
+                '华东区',
+                '华南区',
+                '北方区',
+                '西南区',
+                '西北区'
+            ],
+            datasets: [{
+                label: '五大区域运营实力排行榜',
+                backgroundColor: window.chartColors.blue,
+                borderColor: window.chartColors.blue,
+                borderWidth: 1,
+                barThickness: 50,
+                maxBarThickness: 60,
+                minBarLength: 60,
+                categoryPercentage: 1.0,
+                barPercentage: 0.5,
+                data: data_val
+            }]
+
+        };
+
+
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            options: {
+                color:[window.chartColors.blue,window.chartColors.blue,window.chartColors.blue,window.chartColors.blue,window.chartColors.blue],
+                responsive: true,
+                legend: {
+                    position: 'top',
+                    labels: {
+                        // This more specific font property overrides the global property
+                        fontSize: 48,
+                        fontColor: window.chartColors.blue,
+                    }
+                },
+                title: {
+                    display: false,
+                    text: '区域运营指数'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    }]
+                }
+            },
+            data: barChartData
+        });
+    }
+
+    function initF2Chart(data_val) {
+// Step 1: 创建 Chart 对象
+        const chart = new F2.Chart({
+            id: 'myChart',
+            pixelRatio: window.devicePixelRatio, // 指定分辨率
+            animate:true,
+            // context:'五大区域运营实力排行榜'
+        });
+
+// Step 2: 载入数据源
+        chart.source(data_val, {
+            sales: {
+                tickCount: 5
+            },
+            orderTotal: {
+                min: 0, // 手动指定最小值
+                max: 10, // 手动指定最大值
+            },
+        });
+        chart.tooltip({
+            showItemMarker: false,
+            onShow: function onShow(ev) {
+                const items = ev.items;
+                items[0].name = null;
+                items[0].name = items[0].title;
+                items[0].value = items[0].value;
+            }
+        });
+        chart.axis('name', {
+            label:{
+                fontSize:24
+            }
+        })
+        chart.axis('orderTotal', {
+            label:{
+                fontSize:24
+            }
+        })
+
+// Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
+        chart
+            .interval()
+            .position('name*orderTotal')
+            .shape('orderTotal')
+            .color('name')
+
+
+// Step 4: 渲染图表
+        chart.render();
+    }
+
+    $(function () {
+        getContent();
+        // initF2Chart();
+    })
+
+</script>
+</body>
+</html>

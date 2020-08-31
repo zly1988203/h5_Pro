@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义日历</title>
+    <script src="js/zepto.min.js"></script>
+    <link rel="stylesheet" href="css/simpleui.min.css">
+    <link rel="stylesheet" href="css/time-picker.css">
+    <script src="js/simpleui.min.js"></script>
+    <script src="js/cityTimePicker.js"></script>
+    <script src="js/select-picker.min.js"></script>
+    <script src="js/time-picker.js"></script>
+</head>
+<body>
+<input type="text" id="present_startTime" class="startTime" placeholder="" readonly="" value="" data-date="" data-time="" data-interval="5" data-intervalminute="20" data-filter="05:00~07:00,07:30~09:30,10:00~11:30,12:00~13:30,14:00~22:30">
+</body>
+<script>
+$(function () {
+    initCityTimePicker($('#present_startTime'));
+})
+</script>
+</html>

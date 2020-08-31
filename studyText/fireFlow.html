@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background: #000;
+    }
+    .fire, .fire2 {
+        background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528711658929&di=b1915568e41809ec716dd5fb197059bf&imgtype=0&src=http%3A%2F%2Fimg07.tooopen.com%2Fimages%2F20171215%2Ftooopen_sy_230419854445.jpg') no-repeat;
+        background-size: contain;
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        background-clip: content-box;
+        border-radius: 100%;
+    }
+
+    .fire {
+        animation: firing 1.5s ease infinte;
+        -webkit-animation: firing 1.5s ease infinite;
+    }
+
+    .fire2 {
+        animation: firing2 1.5s ease infinte;
+        -webkit-animation: firing2 1.5s ease infinite;
+    }
+
+    @keyframes firing {
+        0%{ padding: 80px; transform: scale(0.5) translateY(0); opacity:1;}
+        75% { padding:0; transform: scale(1) translateY(0);}
+        100%{ opacity:0; transform:scale(1) translateY(100px);}
+    }
+
+    @-webkit-keyframes firing {
+        0%{ padding: 80px; -webkit-transform: scale(0.5) translateY(0); opacity:1;}
+        75%{ padding:0;-webkit-transform: scale(1) translateY(0);}
+        100%{ opacity:0;-webkit-transform:scale(1) translateY(100px);}
+    }
+
+    @keyframes firing2 {
+        0%{ padding: 80px; -webkit-transform: scale(0.5) translate(0); opacity:1; }
+        100%{ opacity: 0; -webkit-transform: scale(1); }
+    }
+
+    @-webkit-keyframes firing2 {
+        0%{ padding: 80px; -webkit-transform: scale(0.5) translate(0); opacity:1; }
+        100%{ opacity: 0; -webkit-transform:scale(1); }
+    }
+
+</style>
+<body>
+<div class="bg">
+    <div class="fire"></div>
+    <div class="fire2"></div>
+</div>
+</body>
+</html>

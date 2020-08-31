@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>走马灯</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .box {
+        margin: 200px auto;
+        width: 200px;
+        height: 300px;
+        position: relative;
+        transform-style: preserve-3d;
+        /* transform: rotateX(-15deg); */
+        animation: run_horse 15s linear infinite;
+    }
+
+    @keyframes run_horse {
+        0% {
+            transform: rotateX(-15deg) rotateY(0deg);
+        }
+        100% {
+            transform: rotateX(-15deg) rotateY(360deg);
+        }
+    }
+
+    .box > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.9;
+    }
+
+    /* 先让每张图片转好角度   360deg/9=40deg
+      再沿Z轴移动相同的距离    250px再试
+      */
+    .box img:nth-child(1) {
+        transform: translateZ(274px);
+    }
+    .box img:nth-child(2) {
+        transform: rotateY(40deg) translateZ(274px);
+    }
+    .box img:nth-child(3) {
+        transform: rotateY(80deg) translateZ(274px);
+    }
+    .box img:nth-child(4) {
+        transform: rotateY(120deg) translateZ(274px);
+    }
+    .box img:nth-child(5) {
+        transform: rotateY(160deg) translateZ(274px);
+    }
+    .box img:nth-child(6) {
+        transform: rotateY(200deg) translateZ(274px);
+    }
+    .box img:nth-child(7) {
+        transform: rotateY(240deg) translateZ(274px);
+    }
+    .box img:nth-child(8) {
+        transform: rotateY(280deg) translateZ(274px);
+    }
+    .box img:nth-child(9) {
+        transform: rotateY(320deg) translateZ(274px);
+    }
+</style>
+<body>
+<div class="box">
+    <img src="imgs/lession9/1.jpg" alt="" />
+    <img src="imgs/lession9/2.jpg" alt="" />
+    <img src="imgs/lession9/3.jpg" alt="" />
+    <img src="imgs/lession9/4.jpg" alt="" />
+    <img src="imgs/lession9/5.jpg" alt="" />
+    <img src="imgs/lession9/6.jpg" alt="" />
+    <img src="imgs/lession9/7.jpg" alt="" />
+    <img src="imgs/lession9/8.jpg" alt="" />
+    <img src="imgs/lession9/9.jpg" alt="" />
+</div>
+</body>
+</html>

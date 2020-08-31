@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>div弹出动画效果</title>
+    <script src="../scripts/jquery-2.1.1.min.js"></script>
+</head>
+<style type="text/css">
+    body{
+        font-family:"宋体";
+        font-size:13px;
+        color:#415973;
+    }
+    #ShowDiv{
+        display:none;
+        width:300px;
+        height:100px;
+        border:1px solid #ccc;
+        border-right:2px solid #888;
+        border-bottom:2px solid #888;
+        background-color:#f9f9f9;
+        text-align:center;
+        padding-top:30px;
+    }
+</style>
+
+<body>
+普通显示&nbsp&nbsp&nbsp<input type="button" id="ShowButton" name="ShowButton" value="显示"><br>
+动画显示-1&nbsp<input type="button" id="ShowButton_1" name="ShowButton_1" value="显示"><br>
+动画显示-2&nbsp<input type="button" id="ShowButton_2" name="ShowButton_2" value="显示"><br>
+动画显示-3&nbsp<input type="button" id="ShowButton_3" name="ShowButton_3" value="显示"><br>
+<div id="ShowDiv" name="ShowDiv"></div>
+</body>
+<script type="text/javascript">
+    //普通显示
+    $(function(){
+        $("#ShowButton").click(
+            function(){
+                if($("#ShowDiv").css("display")=='none'){
+                    $("#ShowDiv").show();
+                    $("#ShowDiv").html("show()<br>hide()");
+                    $("#ShowButton").val("隐藏");
+                }else{
+                    $("#ShowDiv").hide();
+                    $("#ShowButton").val("显示");
+                }
+            });
+    });
+
+    //动画显示-1
+    $(function(){
+        $("#ShowButton_1").click(
+            function(){
+                if($("#ShowDiv").css("display")=='none'){
+                    $("#ShowDiv").show(1000);
+                    $("#ShowDiv").html("show(1000)<br>hide(1000)");
+                    $("#ShowButton_1").val("隐藏");
+                }else{
+                    $("#ShowDiv").hide(1000);
+                    $("#ShowButton_1").val("显示");
+                }
+            });
+    });
+
+    //动画显示-2
+    $(function(){
+        $("#ShowButton_2").click(
+            function(){
+                if($("#ShowDiv").css("display")=='none'){
+                    $("#ShowDiv").slideDown();
+                    $("#ShowDiv").html("slideDown()<br>slideUp()");
+                    $("#ShowButton_2").val("隐藏");
+                }else{
+                    $("#ShowDiv").slideUp();
+                    $("#ShowButton_2").val("显示");
+                }
+            });
+    });
+
+    //动画显示-3
+    $(function(){
+        $("#ShowButton_3").click(
+            function(){
+                if($("#ShowDiv").css("display")=='none'){
+                    $("#ShowDiv").fadeIn(2000);
+                    $("#ShowDiv").html("fadeIn()<br>fadeOut()");
+                    $("#ShowButton_3").val("隐藏");
+                }else{
+                    $("#ShowDiv").fadeOut(2000);
+                    $("#ShowButton_3").val("显示");
+                }
+            });
+    });
+
+</script>
+
+</html>
