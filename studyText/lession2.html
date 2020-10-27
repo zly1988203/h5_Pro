@@ -44,6 +44,22 @@
             2000, 1,2
 
         )
+        
+        function load() {
+            var num = 9;
+            var arr = [5,22,3,4];
+            var arrIndex = [];
+            for(var i=0;i<arr.length;i++){
+                if(arr[i]<num){
+                    arrIndex.push(i);
+                    var cz = num - arr[i];
+                }
+                if(arr[i] == cz){
+                    arrIndex.push(i);
+                }
+
+            }
+        }
     }
 </script>
 <div id="ant">0</div>

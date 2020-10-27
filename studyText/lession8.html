@@ -24,12 +24,45 @@
     }
 </style>
 
+<style>
+    ul{display: block;}
+    ul li{transition: transform 0.25s ease;float: left;width: 200px;height: 200px;line-height: 200px; text-align: center;margin: 10px; background-color: #00b5e1;list-style: none;}
+    ul li:hover{transform: scale(1.2,1.2);box-shadow: 0 0 10px #0000ff;cursor: pointer;}
+</style>
+
+
 <body>
 普通显示&nbsp&nbsp&nbsp<input type="button" id="ShowButton" name="ShowButton" value="显示"><br>
 动画显示-1&nbsp<input type="button" id="ShowButton_1" name="ShowButton_1" value="显示"><br>
 动画显示-2&nbsp<input type="button" id="ShowButton_2" name="ShowButton_2" value="显示"><br>
 动画显示-3&nbsp<input type="button" id="ShowButton_3" name="ShowButton_3" value="显示"><br>
 <div id="ShowDiv" name="ShowDiv"></div>
+
+
+
+<ul>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+</ul>
+
+<style>
+    .cri{
+        width: 0;
+        height: 0;
+        line-height: 0;
+        font-size: 0;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent #000 transparent;
+    }
+</style>
+<div class="cri"></div>
+
+<object type="application/x-shockwave-flash" style="outline:none;" data="http://cdn.abowman.com/widgets/hamster/hamster.swf?" width="300" height="225"><param name="movie" value="http://cdn.abowman.com/widgets/hamster/hamster.swf?"></param><param name="AllowScriptAccess" value="always"></param><param name="wmode" value="opaque"></param></object>
+
 </body>
 <script type="text/javascript">
     //普通显示
@@ -67,11 +100,11 @@
         $("#ShowButton_2").click(
             function(){
                 if($("#ShowDiv").css("display")=='none'){
-                    $("#ShowDiv").slideDown();
+                    $("#ShowDiv").slideDown(2000);
                     $("#ShowDiv").html("slideDown()<br>slideUp()");
                     $("#ShowButton_2").val("隐藏");
                 }else{
-                    $("#ShowDiv").slideUp();
+                    $("#ShowDiv").slideUp(2000);
                     $("#ShowButton_2").val("显示");
                 }
             });
