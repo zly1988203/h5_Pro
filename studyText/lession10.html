@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>摇摆效果</title>
+</head>
+<style>
+
+    @-webkit-keyframes swing {
+        10% {
+            transform: rotate(15deg);
+        }
+        20% {
+            transform: rotate(-10deg);
+        }
+        30% {
+            transform: rotate(5deg);
+        }
+        40% {
+            transform: rotate(-5deg);
+        }
+        50%,100% {
+            transform: rotate(0deg);
+        }
+    }
+
+
+    .activity img {
+        -webkit-transform-origin: bottom center;
+        -moz-transform-origin: bottom center;
+        -o-transform-origin: bottom center;
+        transform-origin: bottom center;
+        animation: swing 6s .15s linear infinite;
+        -moz-animation: swing 6s .15s linear infinite; /* Firefox */
+        -webkit-animation: swing 6s .15s linear infinite; /* Safari and Chrome */
+        -o-animation: swing 6s .15s linear infinite; /* Opera */
+        width:100%;
+        height:100%;
+    }
+    .activity{
+        /*position: fixed;*/
+        z-index: 120;
+        /*right: 10px;*/
+        /*bottom: 120px;*/
+        width: 67px;
+        height: 289px;
+        margin: auto;
+    }
+</style>
+<body>
+<div class="activity">
+    <img src="imgs/firecracker.png">
+</div>
+
+</body>
+</html>
